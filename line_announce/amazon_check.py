@@ -28,8 +28,8 @@ my_header = {
 amazon_url = [
     # "https://store.m-78.jp/collections/all/products/4573102651419",
     "https://www.amazon.co.jp/S-H-%E3%83%95%E3%82%A3%E3%82%AE%E3%83%A5%E3%82%A2%E3%83%BC%E3%83%84-%E3%82%A6%E3%83%AB%E3%83%88%E3%83%A9%E3%83%9E%E3%83%B3%E3%83%A1%E3%83%93%E3%82%A6%E3%82%B9-%E7%B4%84150mm-PVC%E8%A3%BD-%E5%A1%97%E8%A3%85%E6%B8%88%E3%81%BF%E5%8F%AF%E5%8B%95%E3%83%95%E3%82%A3%E3%82%AE%E3%83%A5%E3%82%A2/dp/B0BTH9R3T5/ref=sr_1_2?gclid=Cj0KCQiA2-2eBhClARIsAGLQ2RnAM1R-LGrcdckTnBaribI1yfDS214QfHrfQ1vva3BYnUEuvV4ZY0gaAn7LEALw_wcB&keywords=%E3%82%A6%E3%83%AB%E3%83%88%E3%83%A9%E3%83%9E%E3%83%B3%E3%83%A1%E3%83%93%E3%82%A6%E3%82%B9+%E3%83%95%E3%82%A3%E3%82%AE%E3%83%A5%E3%82%A2%E3%83%BC%E3%83%84&qid=1675389208&sr=8-2",
-    "https://www.amazon.co.jp/BANDAI-SPIRITS-S-H-%E3%83%95%E3%82%A3%E3%82%AE%E3%83%A5%E3%82%A2%E3%83%BC%E3%83%84-%E3%82%A6%E3%83%AB%E3%83%88%E3%83%A9%E3%83%9E%E3%83%B3%E3%82%BC%E3%83%83%E3%83%88-%E5%A1%97%E8%A3%85%E6%B8%88%E3%81%BF%E5%8F%AF%E5%8B%95%E3%83%95%E3%82%A3%E3%82%AE%E3%83%A5%E3%82%A2/dp/B093BXKQDQ/ref=sr_1_7?adgrpid=141093636942&gclid=Cj0KCQiA2-2eBhClARIsAGLQ2Rn5c6thcvpurWIvjyWYcncxGgSAfvb5A8adWZuibj1TUVtJ_KIeXVsaAsFBEALw_wcB&hvadid=636933216914&hvdev=c&hvlocphy=1009717&hvnetw=g&hvqmt=b&hvrand=16450286563717984569&hvtargid=kwd-1398202071341&hydadcr=27641_14599319&jp-ad-ap=0&keywords=%E3%82%A6%E3%83%AB%E3%83%88%E3%83%A9%E3%83%9E%E3%83%B3%E3%83%A1%E3%83%93%E3%82%A6%E3%82%B9+%E3%83%95%E3%82%A3%E3%82%AE%E3%83%A5%E3%82%A2%E3%83%BC%E3%83%84&qid=1675390086&sr=8-7",
-    "https://www.amazon.co.jp/S-H-%E3%83%95%E3%82%A3%E3%82%AE%E3%83%A5%E3%82%A2%E3%83%BC%E3%83%84-%E3%82%A6%E3%83%AB%E3%83%88%E3%83%A9%E3%83%9E%E3%83%B3%E3%82%BF%E3%82%A4%E3%82%AC-%E7%B4%84150mm-ABS%E8%A3%BD-%E5%8F%AF%E5%8B%95%E3%83%95%E3%82%A3%E3%82%AE%E3%83%A5%E3%82%A2/dp/B07VSPMHM5/ref=sr_1_8?adgrpid=141093636942&gclid=Cj0KCQiA2-2eBhClARIsAGLQ2Rn5c6thcvpurWIvjyWYcncxGgSAfvb5A8adWZuibj1TUVtJ_KIeXVsaAsFBEALw_wcB&hvadid=636933216914&hvdev=c&hvlocphy=1009717&hvnetw=g&hvqmt=b&hvrand=16450286563717984569&hvtargid=kwd-1398202071341&hydadcr=27641_14599319&jp-ad-ap=0&keywords=%E3%82%A6%E3%83%AB%E3%83%88%E3%83%A9%E3%83%9E%E3%83%B3%E3%83%A1%E3%83%93%E3%82%A6%E3%82%B9+%E3%83%95%E3%82%A3%E3%82%AE%E3%83%A5%E3%82%A2%E3%83%BC%E3%83%84&qid=1675390086&sr=8-8"
+    # "https://www.amazon.co.jp/BANDAI-SPIRITS-S-H-%E3%83%95%E3%82%A3%E3%82%AE%E3%83%A5%E3%82%A2%E3%83%BC%E3%83%84-%E3%82%A6%E3%83%AB%E3%83%88%E3%83%A9%E3%83%9E%E3%83%B3%E3%82%BC%E3%83%83%E3%83%88-%E5%A1%97%E8%A3%85%E6%B8%88%E3%81%BF%E5%8F%AF%E5%8B%95%E3%83%95%E3%82%A3%E3%82%AE%E3%83%A5%E3%82%A2/dp/B093BXKQDQ/ref=sr_1_7?adgrpid=141093636942&gclid=Cj0KCQiA2-2eBhClARIsAGLQ2Rn5c6thcvpurWIvjyWYcncxGgSAfvb5A8adWZuibj1TUVtJ_KIeXVsaAsFBEALw_wcB&hvadid=636933216914&hvdev=c&hvlocphy=1009717&hvnetw=g&hvqmt=b&hvrand=16450286563717984569&hvtargid=kwd-1398202071341&hydadcr=27641_14599319&jp-ad-ap=0&keywords=%E3%82%A6%E3%83%AB%E3%83%88%E3%83%A9%E3%83%9E%E3%83%B3%E3%83%A1%E3%83%93%E3%82%A6%E3%82%B9+%E3%83%95%E3%82%A3%E3%82%AE%E3%83%A5%E3%82%A2%E3%83%BC%E3%83%84&qid=1675390086&sr=8-7",
+    # "https://www.amazon.co.jp/S-H-%E3%83%95%E3%82%A3%E3%82%AE%E3%83%A5%E3%82%A2%E3%83%BC%E3%83%84-%E3%82%A6%E3%83%AB%E3%83%88%E3%83%A9%E3%83%9E%E3%83%B3%E3%82%BF%E3%82%A4%E3%82%AC-%E7%B4%84150mm-ABS%E8%A3%BD-%E5%8F%AF%E5%8B%95%E3%83%95%E3%82%A3%E3%82%AE%E3%83%A5%E3%82%A2/dp/B07VSPMHM5/ref=sr_1_8?adgrpid=141093636942&gclid=Cj0KCQiA2-2eBhClARIsAGLQ2Rn5c6thcvpurWIvjyWYcncxGgSAfvb5A8adWZuibj1TUVtJ_KIeXVsaAsFBEALw_wcB&hvadid=636933216914&hvdev=c&hvlocphy=1009717&hvnetw=g&hvqmt=b&hvrand=16450286563717984569&hvtargid=kwd-1398202071341&hydadcr=27641_14599319&jp-ad-ap=0&keywords=%E3%82%A6%E3%83%AB%E3%83%88%E3%83%A9%E3%83%9E%E3%83%B3%E3%83%A1%E3%83%93%E3%82%A6%E3%82%B9+%E3%83%95%E3%82%A3%E3%82%AE%E3%83%A5%E3%82%A2%E3%83%BC%E3%83%84&qid=1675390086&sr=8-8"
 ]
 
 # LINE通知時の文字列
@@ -77,18 +77,25 @@ def prices():
         detail2=detail.replace(',', '')
         # int型に変換
         price=int(detail2)
+        previous=price
+        # print(previous)
         # print(price)
         # print(f['aria-label'])->属性の取得    参考:https://pytutorial.com/get-aria-label-beautifulsoup/
         # 参考2:https://store.m-78.jp/collections/recommend/products/4562294006657
         
         # print(stock['aria-hidden']) # 一応デバッグ
         # もしsaleがhiddenなら通知しない
-        if (price <= 8000): 
+        if (price >= 8000): 
             # 価格が8000以上なら在庫なしとする
-            result_str = "在庫あり,今すぐ購入\n"+"価格は"+str(price)+"円\n"+amazon_url[i]+"\n"
+            result_str = "様子見\n"+"価格は"+str(price)+"円\n"+amazon_url[i]+"\n"
             # それ以外は通知
+        elif(previous>=price):
+            result_str = "価格上昇,買ってもよい\n"+"価格は"+str(price)+"円\n"+amazon_url[i]+"\n"
+        if(price <= 7500 and previous<=price):
+            result_str = "価格上昇,買ってもよい\n"+"価格は"+str(price)+"円\n"+amazon_url[i]+"\n"                
         else:
-            result_str = "在庫なし\n"+"価格は"+str(price)+"円\n"+amazon_url[i]+"\n"
+            result_str = "様子見\n"+"価格は"+str(price)+"円\n"+amazon_url[i]+"\n"
+        
         line_bot_api.push_message(LINE_USER_ID, TextSendMessage(text=result_str))    
             # print(result_str)    
             
@@ -96,7 +103,7 @@ def prices():
 prices()            
             
 # schedule.every(10).seconds.do(task,work="プログラム") 10秒ごとに実行する
-# schedule.every(15).minutes.do(comodities)
+# schedule.every(15).seconds.do(prices)
 # #03 イベント実行
 # while True:
 #     schedule.run_pending()
