@@ -77,7 +77,7 @@ def prices():
         detail2=detail.replace(',', '')
         # int型に変換
         price=int(detail2)
-        previous=price
+        # previous=price
         # print(previous)
         # print(price)
         # print(f['aria-label'])->属性の取得    参考:https://pytutorial.com/get-aria-label-beautifulsoup/
@@ -85,16 +85,16 @@ def prices():
         
         # print(stock['aria-hidden']) # 一応デバッグ
         # もしsaleがhiddenなら通知しない
-        if (price >= 8000): 
+        if (price <= 8000): 
             # 価格が8000以上なら在庫なしとする
-            result_str = "様子見\n"+"価格は"+str(price)+"円\n"+amazon_url[i]+"\n"
+            result_str = "様子見だし...\n"+"価格は"+str(price)+"円\n"+amazon_url[i]+"\n"
             # それ以外は通知
-        elif(previous>=price):
-            result_str = "価格上昇,様子見\n"+"価格は"+str(price)+"円\n"+amazon_url[i]+"\n"
-        if(price <= 7500 and previous<=price):
-            result_str = "価格上昇,しかし買ってもよい\n"+"価格は"+str(price)+"円\n"+amazon_url[i]+"\n"                
+        # elif(previous>=price):
+        #     result_str = "価格上昇だし...様子見だし...\n"+"価格は"+str(price)+"円\n"+amazon_url[i]+"\n"
+        # if(price <= 7500 and previous<price):
+        #     result_str = "価格上昇,けど買ってもよいし...\n"+"価格は"+str(price)+"円だし...\n"+amazon_url[i]+"\n"                
         else:
-            result_str = "様子見\n"+"価格は"+str(price)+"円\n"+amazon_url[i]+"\n"
+            result_str = "だめだし...\n"+"転売だし...\n価格は"+str(price)+"円だし...\n"+amazon_url[i]+"\n"
         
         line_bot_api.push_message(LINE_USER_ID, TextSendMessage(text=result_str))    
             # print(result_str)    
