@@ -90,9 +90,9 @@ def prices():
             result_str = "様子見\n"+"価格は"+str(price)+"円\n"+amazon_url[i]+"\n"
             # それ以外は通知
         elif(previous>=price):
-            result_str = "価格上昇,買ってもよい\n"+"価格は"+str(price)+"円\n"+amazon_url[i]+"\n"
+            result_str = "価格上昇,様子見\n"+"価格は"+str(price)+"円\n"+amazon_url[i]+"\n"
         if(price <= 7500 and previous<=price):
-            result_str = "価格上昇,買ってもよい\n"+"価格は"+str(price)+"円\n"+amazon_url[i]+"\n"                
+            result_str = "価格上昇,しかし買ってもよい\n"+"価格は"+str(price)+"円\n"+amazon_url[i]+"\n"                
         else:
             result_str = "様子見\n"+"価格は"+str(price)+"円\n"+amazon_url[i]+"\n"
         
