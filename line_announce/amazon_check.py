@@ -4,6 +4,10 @@
 # pip install line-bot-sdk
 
 # ライブラリを用意
+import schedule
+from time import sleep
+# 定期実行ライブラリ
+
 import re
 import requests
 from bs4 import BeautifulSoup
@@ -55,73 +59,56 @@ result_str = "入荷\n"
 #     except LineBotApiError as e:
 #         print(e)
 
-# Amazon用
-# result_str = "円谷store\n"
-for i in range(len(amazon_url)):
-    # print(len(amazon_url))
-    data = requests.get(amazon_url[i], headers = my_header)
-    data.encoding = data.apparent_encoding
-    data = data.text
-    soup = BeautifulSoup(data, "html.parser")
-    
-    # 販売情報の取得
-    # saleがhiddenなら通達しない
-    #     <span class="price__badge price__badge--sale" aria-hidden="true">
-    #       <span>SALE</span>
-    #     </span>
-    
-    # 在庫があるかテキスト抽出
-    # stock= soup.find_all("div",class_='price__badges price__badges--listing')
-    # 価格のテキスト抽出
-    detail=soup.find("span",class_='a-price-whole').text
-    
-    # 数値データを整形
-    detail2=detail.replace(',', '')
-    # int型に変換
-    price=int(detail2)
-    # print(price)
-    # print(f['aria-label'])->属性の取得    参考:https://pytutorial.com/get-aria-label-beautifulsoup/
-    # 参考2:https://store.m-78.jp/collections/recommend/products/4562294006657
-    # print(stock['aria-hidden']) # 一応デバッグ
-    # もしsaleがhiddenなら通知しない
-    
-    # 条件分岐
-    # aria-hiddenがtrue->ログインが必要です
-    # の順で分岐させる
-    # <button type="button" class="product-form__cart-submit btn disabled btn--disabled btn--disabled-login btn-multiple-line">ご購入にはログインが必要です</button>
-    
-    # <div class="price__badges price__badges--listing">
-    # <span class="price__badge price__badge--sale" aria-hidden="true">
-    #   <span>SALE</span>
-    # </span>
-    # <span class="price__badge price__badge--sold-out">
-    #   <span>在庫なし</span>
-    # </span>
-    #     <span class="price__badge price__badge--reservation"><span>予約</span></span>
-    #     <span class="price__badge price__badge--new"><span>新商品</span></span>
-    #     <span class="price__badge price__badge--free"><span>送料無料</span></span>
-    # </div>
-    
-    
-    
-    if (price <= 8000): 
-        # 価格が8000以上なら在庫なしとする
-        result_str = "在庫あり,今すぐ購入\n"+"価格は"+str(price)+"円\n"+amazon_url[i]+"\n"
-        # それ以外は通知
-    else:
-        result_str = "在庫なし\n"+"価格は"+str(price)+"円\n"+amazon_url[i]+"\n"
-    line_bot_api.push_message(LINE_USER_ID, TextSendMessage(text=result_str))    
-        # print(result_str)    
+def prices():
+    # Amazon用
+    for i in range(len(amazon_url)):
+
+        data = requests.get(amazon_url[i], headers = my_header)
+        data.encoding = data.apparent_encoding
+        data = data.text
+        soup = BeautifulSoup(data, "html.parser")
+        
+        # 在庫があるかテキスト抽出
+        # stock= soup.find_all("div",class_='price__badges price__badges--listing')
+        # 価格のテキスト抽出
+        detail=soup.find("span",class_='a-price-whole').text
+        
+        # 数値データを整形
+        detail2=detail.replace(',', '')
+        # int型に変換
+        price=int(detail2)
+        # print(price)
+        # print(f['aria-label'])->属性の取得    参考:https://pytutorial.com/get-aria-label-beautifulsoup/
+        # 参考2:https://store.m-78.jp/collections/recommend/products/4562294006657
+        
+        # print(stock['aria-hidden']) # 一応デバッグ
+        # もしsaleがhiddenなら通知しない
+        if (price <= 8000): 
+            # 価格が8000以上なら在庫なしとする
+            result_str = "在庫あり,今すぐ購入\n"+"価格は"+str(price)+"円\n"+amazon_url[i]+"\n"
+            # それ以外は通知
+        else:
+            result_str = "在庫なし\n"+"価格は"+str(price)+"円\n"+amazon_url[i]+"\n"
+        line_bot_api.push_message(LINE_USER_ID, TextSendMessage(text=result_str))    
+            # print(result_str)    
+            
+#関数実行 
+prices()            
+            
+# schedule.every(10).seconds.do(task,work="プログラム") 10秒ごとに実行する
+# schedule.every(15).minutes.do(comodities)
+# #03 イベント実行
+# while True:
+#     schedule.run_pending()
+#     sleep(1)            
 
 #参考として価格を得るコード 
 # def get_price(amazon_url):
 #     res = requests.get(amazon_url)
 #     soup = bs4.BeautifulSoup(res.text, features="lxml")
 #     selected_html = soup.select('.a-span12 span.a-color-price')
-
 #     if not selected_html:
 #         selected_html = soup.select('.a-color-base span.a-color-price')
-
 #     pattern = r'\d*,?\d*,?\d*\d'
 #     regex = re.compile(pattern)
 #     matches = re.findall(regex, selected_html[0].text)
