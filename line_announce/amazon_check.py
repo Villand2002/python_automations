@@ -22,11 +22,12 @@ my_header = {
 }
 # 入荷待ち用のurl
 amazon_url = [
-    "https://store.m-78.jp/collections/all/products/4573102651419"
+    "https://store.m-78.jp/collections/all/products/4573102651419",
+    "https://store.m-78.jp/collections/recommend/products/4562294006657"
 ]
 
 # LINE通知時の文字列
-# result_str = "入荷価格:str(get_price(amazon_url))\n"
+result_str = "入荷\n"
 
 
 # Joshin用
@@ -53,31 +54,35 @@ amazon_url = [
 #         print(e)
 
 # Amazon用
-result_str = "円谷store\n"
+# result_str = "円谷store\n"
 for i in range(len(amazon_url)):
+    # print(len(amazon_url))
     data = requests.get(amazon_url[i], headers = my_header)
     data.encoding = data.apparent_encoding
     data = data.text
     soup = BeautifulSoup(data, "html.parser")
-    
-    
     # 販売情報の取得
     # saleがhiddenなら通達しない
-    # <span class="price__badge price__badge--sale" aria-hidden="true">
-    #   <span>SALE</span>
-    # </span>
-    
+    #     <span class="price__badge price__badge--sale" aria-hidden="true">
+    #       <span>SALE</span>
+    #     </span>
     # 在庫があるかテキスト抽出
-    
-    detail = soup.find("span",class_='price__badge price__badge--sale').text
-    print(detail) # 一応デバッグ
+
+    detail = soup.find("span",class_='price__badge price__badge--sale')
+        
+    # print(f['aria-label'])->属性の取得    参考:https://pytutorial.com/get-aria-label-beautifulsoup/
+    # 参考2:https://store.m-78.jp/collections/recommend/products/4562294006657
+    # print(detail['aria-hidden']) # 一応デバッグ
     # もしsaleがhiddenなら通知しない
-    if ("true" in detail): 
+    
+    if ("true" in detail['aria-hidden']): 
         # aria-hidden=trueなら在庫なしとする
-        result_str = "在庫なし\n"
+        result_str = "在庫なし"
         # それ以外は通知
-    else:
-        result_str = "在庫あり,今すぐ購入\n"
+    elif("true" in detail['aria-hidden'] and ):
+        result_str = "在庫あり,今すぐ購入\n"+amazon_url[i]
+    line_bot_api.push_message(LINE_USER_ID, TextSendMessage(text=result_str))    
+        # print(result_str)    
 
 #参考として価格を得るコード 
 # def get_price(amazon_url):
@@ -96,12 +101,11 @@ for i in range(len(amazon_url)):
         
 
 # Amazon用LINE通知
-if result_str == "在庫あり,今すぐ購入\n" :
-    try:
-        # line_bot_api.push_message(LINE_USER_ID, TextSendMessage(text=get_price(amazon_url)))
-        line_bot_api.push_message(LINE_USER_ID, TextSendMessage(text=result_str))
-    except LineBotApiError as e:
-        print(e)
+# if result_str != "在庫あり,今すぐ購入\n" :
+#     try:
+#         line_bot_api.push_message(LINE_USER_ID, TextSendMessage(text=result_str))
+#     except LineBotApiError as e:
+#         print(e)
 
 
 
