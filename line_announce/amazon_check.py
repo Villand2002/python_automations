@@ -22,8 +22,8 @@ my_header = {
 }
 # 入荷待ち用のurl
 amazon_url = [
-    "https://store.m-78.jp/collections/all/products/4573102651419",
-    "https://store.m-78.jp/collections/recommend/products/4562294006657"
+    # "https://store.m-78.jp/collections/all/products/4573102651419",
+    "https://www.amazon.co.jp/S-H-%E3%83%95%E3%82%A3%E3%82%AE%E3%83%A5%E3%82%A2%E3%83%BC%E3%83%84-%E3%82%A6%E3%83%AB%E3%83%88%E3%83%A9%E3%83%9E%E3%83%B3%E3%83%A1%E3%83%93%E3%82%A6%E3%82%B9-%E7%B4%84150mm-PVC%E8%A3%BD-%E5%A1%97%E8%A3%85%E6%B8%88%E3%81%BF%E5%8F%AF%E5%8B%95%E3%83%95%E3%82%A3%E3%82%AE%E3%83%A5%E3%82%A2/dp/B0BTH9R3T5/ref=sr_1_2?gclid=Cj0KCQiA2-2eBhClARIsAGLQ2RnAM1R-LGrcdckTnBaribI1yfDS214QfHrfQ1vva3BYnUEuvV4ZY0gaAn7LEALw_wcB&keywords=%E3%82%A6%E3%83%AB%E3%83%88%E3%83%A9%E3%83%9E%E3%83%B3%E3%83%A1%E3%83%93%E3%82%A6%E3%82%B9+%E3%83%95%E3%82%A3%E3%82%AE%E3%83%A5%E3%82%A2%E3%83%BC%E3%83%84&qid=1675389208&sr=8-2"
 ]
 
 # LINE通知時の文字列
@@ -38,9 +38,9 @@ result_str = "入荷\n"
 #     data = data.text
 #     soup = BeautifulSoup(data, "html.parser")
 #     try:
-#         detail = soup.find("form",{"name":"cart_button"}).text.encode("UTF-8")
-#         print(detail) # デバッグ
-#         if ("販売" in detail) == False: # 販売休止中ですとなっていなければ在庫あり
+#         stock = soup.find("form",{"name":"cart_button"}).text.encode("UTF-8")
+#         print(stock) # デバッグ
+#         if ("販売" in stock) == False: # 販売休止中ですとなっていなければ在庫あり
 #             if(i == 0) : result_str += "ネオン在庫あり\n"
 #             if(i == 1) : result_str += "グレー在庫あり\n"
 #     except AttributeError:
@@ -61,26 +61,53 @@ for i in range(len(amazon_url)):
     data.encoding = data.apparent_encoding
     data = data.text
     soup = BeautifulSoup(data, "html.parser")
+    
     # 販売情報の取得
     # saleがhiddenなら通達しない
     #     <span class="price__badge price__badge--sale" aria-hidden="true">
     #       <span>SALE</span>
     #     </span>
+    
     # 在庫があるかテキスト抽出
-
-    detail = soup.find("span",class_='price__badge price__badge--sale')
-        
+    # stock= soup.find_all("div",class_='price__badges price__badges--listing')
+    # 価格のテキスト抽出
+    detail=soup.find("span",class_='a-price-whole').text
+    
+    # 数値データを整形
+    detail2=detail.replace(',', '')
+    # int型に変換
+    price=int(detail2)
+    # print(price)
     # print(f['aria-label'])->属性の取得    参考:https://pytutorial.com/get-aria-label-beautifulsoup/
     # 参考2:https://store.m-78.jp/collections/recommend/products/4562294006657
-    # print(detail['aria-hidden']) # 一応デバッグ
+    # print(stock['aria-hidden']) # 一応デバッグ
     # もしsaleがhiddenなら通知しない
     
-    if ("true" in detail['aria-hidden']): 
-        # aria-hidden=trueなら在庫なしとする
-        result_str = "在庫なし"
+    # 条件分岐
+    # aria-hiddenがtrue->ログインが必要です
+    # の順で分岐させる
+    # <button type="button" class="product-form__cart-submit btn disabled btn--disabled btn--disabled-login btn-multiple-line">ご購入にはログインが必要です</button>
+    
+    # <div class="price__badges price__badges--listing">
+    # <span class="price__badge price__badge--sale" aria-hidden="true">
+    #   <span>SALE</span>
+    # </span>
+    # <span class="price__badge price__badge--sold-out">
+    #   <span>在庫なし</span>
+    # </span>
+    #     <span class="price__badge price__badge--reservation"><span>予約</span></span>
+    #     <span class="price__badge price__badge--new"><span>新商品</span></span>
+    #     <span class="price__badge price__badge--free"><span>送料無料</span></span>
+    # </div>
+    
+    
+    
+    if (price <= 8000): 
+        # 価格が8000以上なら在庫なしとする
+        result_str = "在庫あり,今すぐ購入\n"+"価格は"+str(price)+"円\n"+amazon_url[i]+"\n"
         # それ以外は通知
-    elif("true" in detail['aria-hidden'] and ):
-        result_str = "在庫あり,今すぐ購入\n"+amazon_url[i]
+    else:
+        result_str = "在庫なし\n"+"価格は"+str(price)+"円\n"+amazon_url[i]+"\n"
     line_bot_api.push_message(LINE_USER_ID, TextSendMessage(text=result_str))    
         # print(result_str)    
 
