@@ -28,18 +28,12 @@ pdf_path=(input("ファイルパスを指定:")).replace('"','').replace("ファ
 #pdfからテクスト抽出    
 sentence = extract_text(pdf_path)
 text = sentence.replace(' ','')
-print(text) #デバック用
+# print(text) #デバック用
 
-
-# if(len(text)<=400):
     # lineで本文を送る
 message="テキスト抽出気持ち良すぎだろ!\n"+text
 line_bot_api.push_message(LINE_USER_ID, TextSendMessage(text=message))
-# else:
-#     # おそらく文字数正弦波400字なのでそれを通達
-#     message="文字列が多いんだよ!\n教えはどうなってんだ教えは!\n"+pdf_path
-#     # lineで送る
-#     line_bot_api.push_message(LINE_USER_ID, TextSendMessage(text=message))
+
             
 
 
