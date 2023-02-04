@@ -26,18 +26,20 @@ line_bot_api = LineBotApi(LINE_ACCESS_TOKEN)
 pdf_path=(input("ファイルパスを指定:")).replace('"','').replace("ファイルパスを指定:",'')
 
 #pdfからテクスト抽出    
-extract_text = extract_text(pdf_path)
-# print(extract_text)　デバック用
+sentence = extract_text(pdf_path)
+text = sentence.replace(' ','')
+print(text) #デバック用
 
 
-if(len(extract_text)<=400):
+# if(len(text)<=400):
     # lineで本文を送る
-    line_bot_api.push_message(LINE_USER_ID, TextSendMessage(text=extract_text))
-else:
-    # おそらく文字数正弦波400字なのでそれを通達
-    extract_text="文字列が多いんだよ!\n教えはどうしたんだ教えは!\n"+pdf_path
-    # lineで送る
-    line_bot_api.push_message(LINE_USER_ID, TextSendMessage(text=extract_text))
+message="テキスト抽出気持ち良すぎだろ!\n"+text
+line_bot_api.push_message(LINE_USER_ID, TextSendMessage(text=message))
+# else:
+#     # おそらく文字数正弦波400字なのでそれを通達
+#     message="文字列が多いんだよ!\n教えはどうなってんだ教えは!\n"+pdf_path
+#     # lineで送る
+#     line_bot_api.push_message(LINE_USER_ID, TextSendMessage(text=message))
             
 
 
