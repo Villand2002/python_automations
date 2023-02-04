@@ -103,7 +103,7 @@ def prices():
 prices()            
             
 # schedule.every(10).seconds.do(task,work="プログラム") 10秒ごとに実行する
-# schedule.every(15).seconds.do(prices)
+# schedule.every(15).minutes.do(prices)
 # #03 イベント実行
 # while True:
 #     schedule.run_pending()
