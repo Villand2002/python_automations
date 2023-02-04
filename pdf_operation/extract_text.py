@@ -14,7 +14,7 @@ text = extract_text(pdf_path)
 print(text)
 
 # 参考:https://office54.net/python/module/pdf-pdfminer-six#section1-2
-
+# https://dev.classmethod.jp/articles/export-text-data-from-pdf-using-python/
 
 
 
