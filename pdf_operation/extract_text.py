@@ -7,8 +7,9 @@ from pdfminer.layout import LAParams
 from pdfminer.high_level import extract_text
 from pdfminer.high_level import extract_text_to_fp
 
-pdf_path=(input("ファイルパスを指定:"))
-
+# print("ファイルパスを指定:")
+pdf_path=(input("ファイルパスを指定:")).replace('"',"")
+                                       
 text = extract_text(pdf_path)
 print(text)
 
