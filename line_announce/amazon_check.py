@@ -1,7 +1,7 @@
 # 必要なライブラリをインストール
 # pip install requests
-# pip install beautifulsoup4
-# pip install line-bot-sdk
+# pip install beautifulsoup4 スクレイピング用
+# pip install line-bot-sdk line用
 
 # ライブラリを用意
 import schedule
@@ -77,10 +77,8 @@ def prices():
         detail2=detail.replace(',', '')
         # int型に変換
         price=int(detail2)
-        # previous=price
-        # print(previous)
-        # print(price)
-        # print(f['aria-label'])->属性の取得    参考:https://pytutorial.com/get-aria-label-beautifulsoup/
+        
+        # print(stock['aria-label'])->[]によって属性の取得が可能(参考:https://pytutorial.com/get-aria-label-beautifulsoup/)
         # 参考2:https://store.m-78.jp/collections/recommend/products/4562294006657
         
         # print(stock['aria-hidden']) # 一応デバッグ
@@ -102,8 +100,10 @@ def prices():
 #関数実行 
 prices()            
             
-# schedule.every(10).seconds.do(task,work="プログラム") 10秒ごとに実行する
-# schedule.every(15).minutes.do(prices)
+            
+
+# schedule.every(15).minutes.do(prices)　15分ごとに実行する
+
 # #03 イベント実行
 # while True:
 #     schedule.run_pending()
