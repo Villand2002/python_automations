@@ -33,7 +33,7 @@ amazon_url = [
 ]
 
 # LINE通知時の文字列
-result_str = "入荷\n"
+# result_str = "入荷\n"
 
 
 # Joshin用
