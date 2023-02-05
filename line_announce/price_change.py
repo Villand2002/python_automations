@@ -1,3 +1,5 @@
+# ここでは価格の変化を考慮してメッセージを送るよう改良する.
+
 # 必要なライブラリをインストール
 # pip install requests
 # pip install beautifulsoup4 スクレイピング用
@@ -6,8 +8,8 @@
 # ライブラリを用意
 import schedule
 from time import sleep
-# 定期実行ライブラリ
 
+# 定期実行ライブラリ
 import re
 import requests
 from bs4 import BeautifulSoup
@@ -31,33 +33,6 @@ amazon_url = [
     # "https://www.amazon.co.jp/BANDAI-SPIRITS-S-H-%E3%83%95%E3%82%A3%E3%82%AE%E3%83%A5%E3%82%A2%E3%83%BC%E3%83%84-%E3%82%A6%E3%83%AB%E3%83%88%E3%83%A9%E3%83%9E%E3%83%B3%E3%82%BC%E3%83%83%E3%83%88-%E5%A1%97%E8%A3%85%E6%B8%88%E3%81%BF%E5%8F%AF%E5%8B%95%E3%83%95%E3%82%A3%E3%82%AE%E3%83%A5%E3%82%A2/dp/B093BXKQDQ/ref=sr_1_7?adgrpid=141093636942&gclid=Cj0KCQiA2-2eBhClARIsAGLQ2Rn5c6thcvpurWIvjyWYcncxGgSAfvb5A8adWZuibj1TUVtJ_KIeXVsaAsFBEALw_wcB&hvadid=636933216914&hvdev=c&hvlocphy=1009717&hvnetw=g&hvqmt=b&hvrand=16450286563717984569&hvtargid=kwd-1398202071341&hydadcr=27641_14599319&jp-ad-ap=0&keywords=%E3%82%A6%E3%83%AB%E3%83%88%E3%83%A9%E3%83%9E%E3%83%B3%E3%83%A1%E3%83%93%E3%82%A6%E3%82%B9+%E3%83%95%E3%82%A3%E3%82%AE%E3%83%A5%E3%82%A2%E3%83%BC%E3%83%84&qid=1675390086&sr=8-7",
     # "https://www.amazon.co.jp/S-H-%E3%83%95%E3%82%A3%E3%82%AE%E3%83%A5%E3%82%A2%E3%83%BC%E3%83%84-%E3%82%A6%E3%83%AB%E3%83%88%E3%83%A9%E3%83%9E%E3%83%B3%E3%82%BF%E3%82%A4%E3%82%AC-%E7%B4%84150mm-ABS%E8%A3%BD-%E5%8F%AF%E5%8B%95%E3%83%95%E3%82%A3%E3%82%AE%E3%83%A5%E3%82%A2/dp/B07VSPMHM5/ref=sr_1_8?adgrpid=141093636942&gclid=Cj0KCQiA2-2eBhClARIsAGLQ2Rn5c6thcvpurWIvjyWYcncxGgSAfvb5A8adWZuibj1TUVtJ_KIeXVsaAsFBEALw_wcB&hvadid=636933216914&hvdev=c&hvlocphy=1009717&hvnetw=g&hvqmt=b&hvrand=16450286563717984569&hvtargid=kwd-1398202071341&hydadcr=27641_14599319&jp-ad-ap=0&keywords=%E3%82%A6%E3%83%AB%E3%83%88%E3%83%A9%E3%83%9E%E3%83%B3%E3%83%A1%E3%83%93%E3%82%A6%E3%82%B9+%E3%83%95%E3%82%A3%E3%82%AE%E3%83%A5%E3%82%A2%E3%83%BC%E3%83%84&qid=1675390086&sr=8-8"
 ]
-
-# LINE通知時の文字列
-# result_str = "入荷\n"
-
-
-# Joshin用
-# result_str = "Joshin\n"
-# for i in range(len(joshin_url)):
-#     data = requests.get(joshin_url[i], headers = my_header)
-#     data.encoding = data.apparent_encoding
-#     data = data.text
-#     soup = BeautifulSoup(data, "html.parser")
-#     try:
-#         stock = soup.find("form",{"name":"cart_button"}).text.encode("UTF-8")
-#         print(stock) # デバッグ
-#         if ("販売" in stock) == False: # 販売休止中ですとなっていなければ在庫あり
-#             if(i == 0) : result_str += "ネオン在庫あり\n"
-#             if(i == 1) : result_str += "グレー在庫あり\n"
-#     except AttributeError:
-#             print("Error")
-
-# # Joshin用LINE通知
-# if result_str != "Joshin\n":
-#     try:
-#         line_bot_api.push_message(LINE_USER_ID, TextSendMessage(text=result_str))
-#     except LineBotApiError as e:
-#         print(e)
 
 def prices():
     # Amazon用
