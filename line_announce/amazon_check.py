@@ -102,12 +102,13 @@ prices()
             
             
 
-# schedule.every(15).minutes.do(prices)　15分ごとに実行する
+schedule.every(15).minutes.do(prices)
+# 15分ごとに実行する
 
-# #03 イベント実行
-# while True:
-#     schedule.run_pending()
-#     sleep(1)            
+#03 イベント実行
+while True:
+    schedule.run_pending()
+    sleep(1)            
 
 #参考として価格を得るコード 
 # def get_price(amazon_url):
