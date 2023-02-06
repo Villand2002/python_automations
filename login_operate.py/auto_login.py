@@ -3,23 +3,24 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome import service as fs
  
+# webdriverのpathを指定する 
 driverpath = "C:\\Users\\st200\\Downloads\\chromedriver_win32\\chromedriver.exe"
 
 # chrome driverとchromeのversionが一致する必要がある.2023/2/6時点では地王していないためすぐに落ちる
  
 # ドライバー指定でChromeブラウザを開く
-
+# serviceメソッドが推奨のよう
 chrome_service = fs.Service(executable_path=driverpath)
 browser = webdriver.Chrome(service=chrome_service)
  
-# Googleアクセス
+# Googleをエンジンとして用いている。
 browser.get('https://www.google.com/')
  
  
-# 検索ボックスを特定
+# 検索ボックスを指定.
 elem = browser.find_element(By.NAME, 'q')
 
-# 「Selenium」と入力して、「Enter」を押す
+# 「九大moodle」と入力して、「Enter」を押す
 elem.send_keys('九大moodle' + Keys.RETURN)
 
 #検索結果1位をクリック
@@ -28,21 +29,30 @@ g = browser.find_elements(By.CLASS_NAME,"g")[0]
 r = g.find_element(By.CLASS_NAME,"r")
 r.click()
 
+# version非対応につき確認できたのはここまで
+
 # ログイン操作を実行する.
 # browser.find_element(By.属性,その中身) で要素の中身を取得
 username = browser.find_element(By.ID,'username') 
 password=browser.find_element(By.ID,'password') 
 
-# フォームのクリア
+# 指定したフォームのクリア
 username.clear()
 password.clear()
-# 
+
+# send_keysでキーボード入力
 username.send_keys("具体的な文字列")
 password.send_keys("パスワード")
 
 # それぞれ送信
 username.submit()
 password.submit()
+
+# もしくは最初に文字列を入力
+username.send_keys('具体的な文字列')
+# パスワード入力後にenter keyを押すようにする　とよいか?
+
+password.send_keys('パスワード'+ Keys.RETURN)
 # ブラウザを閉じる
 # browser.quit()
 
