@@ -49,10 +49,10 @@ username.submit()
 password.submit()
 
 # もしくは最初に文字列を入力
-username.send_keys('具体的な文字列')
+# username.send_keys('具体的な文字列')
 # パスワード入力後にenter keyを押すようにする　とよいか?
 
-password.send_keys('パスワード'+ Keys.RETURN)
+# password.send_keys('パスワード'+ Keys.RETURN)
 # ブラウザを閉じる
 # browser.quit()
 
