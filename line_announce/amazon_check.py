@@ -85,7 +85,7 @@ def prices():
         # もしsaleがhiddenなら通知しない
         if (price <= 8000): 
             # 価格が8000以上なら在庫なしとする
-            result_str = "様子見だし...\n"+"価格は"+str(price)+"円\n"+amazon_url[i]+"\n"
+            result_str = f"様子見だし...\n価格は{price}円\n{amazon_url[i]}\n"
             # それ以外は通知
         # elif(previous>=price):
         #     result_str = "価格上昇だし...様子見だし...\n"+"価格は"+str(price)+"円\n"+amazon_url[i]+"\n"
