@@ -5,10 +5,9 @@ import calendar
 
 
 
-nihongo = ['日', '月', '火', '水', '木', '金', '土']
-
 # データを入力
-inputdata = input("Please input year and month(eg:2020/01) >> ")
+inputdata = input("Please input year and month(eg:2020/01/01) >> ")
+
 # /で区切ってそれぞれをデータとして取得する.
 year, month = (x for x in inputdata.split('/'))
 
@@ -30,7 +29,7 @@ for i in range(40):
         break
     else:
         # csvに書き込む
-        f.write(f",{startdate.strftime('%Y')}年{startdate.strftime('%m')}月{startdate.strftime('%d')}日({nihongo[int(startdate.strftime('%w'))]}),{startdate.strftime('%Y')}年{startdate.strftime('%m')}月{startdate.strftime('%d')}日({nihongo[int(startdate.strftime('%w'))]})\n")
+        f.write(f",{startdate.strftime('%m')}/{startdate.strftime('%d')}/{startdate.strftime('%Y')},{startdate.strftime('%m')}/{startdate.strftime('%d')}/{startdate.strftime('%Y')}\n")
     # 日付を加算
     startdate += datetime.timedelta(days=1)
 
@@ -39,3 +38,4 @@ f.close()
 
 
 # 参考:https://opty-life.com/study/program/python/python-lecture-23/
+# https://non-dimension.com/python-googlecalendarapi/
