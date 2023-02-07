@@ -2,11 +2,14 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome import service as fs
+
+# seleniumのimport
  
 # webdriverのpathを指定する 
 driverpath = "C:\\Users\\st200\\Downloads\\chromedriver_win32\\chromedriver.exe"
 
-# chrome driverとchromeのversionが一致する必要がある.2023/2/6時点では地王していないためすぐに落ちる
+# chrome driverとchromeのversionが一致する必要がある.
+# 2023/2/6時点では私のブラウザに対応していないためすぐに落ちる
  
 # ドライバー指定でChromeブラウザを開く
 # serviceメソッドが推奨のよう
@@ -27,6 +30,8 @@ elem.send_keys('九大moodle' + Keys.RETURN)
 g = browser.find_elements(By.CLASS_NAME,"g")[0]
 # print(g)
 r = g.find_element(By.CLASS_NAME,"r")
+
+# クリックをする
 r.click()
 
 # version非対応につき確認できたのはここまで
