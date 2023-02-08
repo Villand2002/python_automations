@@ -1,6 +1,7 @@
 import csv
 import datetime
 from datetime import date,timedelta
+import keyboard
 import calendar
 import time
 # osとsys は標準ライブラリ
@@ -9,13 +10,11 @@ import os
 # pip install keyboard
 # 参考:https://kuku81kuku81.hatenablog.com/entry/2022/06/19_python_endofprocessingbykeyinput
 # https://kuku81kuku81.hatenablog.com/entry/2022/06/07_python_keyinputjudgement
-
-import keyboard
-
 import sys
 
 # csvの作成場所
 file_path=f'C:\\Users\\st200\\downloads\\schedule.csv'
+
 
 
 # with open(file_path,"x") as f:
@@ -24,10 +23,10 @@ f= open(file_path, 'x')
 # goodle calendarの書式に合わせて設定
 f.write("Subject,Start Date,End Date\n")
 
-for i in range(40):
+# for i in range(40):
+while True:
     # データを入力
-    # end="x"
-    print(f"入力終了の時はエスケープキーを入れてください.")
+    # print("入力終了の時はエスケープキーを入れてください.")
     Subject=input("予定は何でしょうか? >>")
     startdata = input("予定の日にちは?(例:2020/01/01) >> ")
     enddata = input("予定はいつ終了しますか?(例:2020/01/01) >> ")
@@ -38,9 +37,10 @@ for i in range(40):
     enddate = datetime.date(int(endyear), int(endmonth), int(enddate))  
     # csvに書き込む
     f.write(f"{Subject},{startdate.strftime('%m')}/{startdate.strftime('%d')}/{startdate.strftime('%Y')},{enddate.strftime('%m')}/{enddate.strftime('%d')}/{enddate.strftime('%Y')}\n")   
-    # if keyboard.read_key() == "escape":
+    if keyboard.is_pressed("shift"):
+        print('処理を終了しました。')
+        sys.exit() 
 f.close()
-
 
 # 参考:https://opty-life.com/study/program/python/python-lecture-23/
 # https://non-dimension.com/python-googlecalendarapi/s
