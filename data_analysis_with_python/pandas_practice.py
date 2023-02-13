@@ -1,4 +1,6 @@
 import pandas as pd
+
+# 読み込むデータのcsvを指定する.
 df=pd.read_csv("C:\\Users\\st200\\OneDrive - Kyushu University\\個人学習\\python\\train.csv")
 # 最初の5行を出力
 df.head()
